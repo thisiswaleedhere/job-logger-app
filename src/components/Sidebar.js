@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { cudErrorDisplay, editJobAction, getAllJobsAsync } from "../redux/jobSlice"
 import { JOBS_URL } from "../utils/constants"
-
+import { stateAddModal } from "../redux/uiSlice"
 
 const Sidebar = () => {
 
@@ -10,6 +10,7 @@ const Sidebar = () => {
     const { editJob, count, cuderror } = useSelector((appStore) => appStore.job)
     // const count = useSelector((appStore) => appStore.job.count)
     const userToken = useSelector((store) => store.user.userToken)
+    const { show } = useSelector((store) => store.ui)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -50,6 +51,7 @@ const Sidebar = () => {
             const result = await response.json();
             result.msg ? dispatch(cudErrorDisplay(result.msg)) : dispatch(cudErrorDisplay(null))
             dispatch(editJobAction(null))
+            dispatch(stateAddModal(false))
             dispatch(getAllJobsAsync(userToken))
             setSingleJob({ company: "", position: "", joblink: "", status: "applied" })
 
@@ -69,6 +71,7 @@ const Sidebar = () => {
             })
 
             dispatch(editJobAction(null))
+            dispatch(stateAddModal(false))
             dispatch(getAllJobsAsync(userToken))
             setSingleJob({ company: "", position: "", joblink: "", status: "applied" })
 
@@ -79,10 +82,9 @@ const Sidebar = () => {
     }
 
 
-
     return (
-        <div className='flex flex-col justify-between h-[calc(100vh-110px)] mx-4 mt-4 w-1/4 py-4 rounded-2xl border-gray-800 dark:border-gray-500 border-2'>
-            <div className='flex-col flex gap-4 text-gray-600 dark:text-gray-400 font-bold'>
+        <div className={`${show ? " absolute " : "hidden md:flex"} min-w-[260px] right-0 bg-gray-800 md:bg-transparent md:static flex flex-col justify-between md:h-[calc(100vh-110px)] mx-4 mt-4 md:w-1/4 py-4 rounded-2xl border-gray-800 dark:border-gray-500 border-2`}>
+            <div className='min-w-[260px] flex-col flex gap-4 text-gray-600 dark:text-gray-400 font-bold'>
 
 
                 <form className='flex-col flex gap-4 mt-2' onSubmit={(e) => { e.preventDefault() }}>
@@ -113,7 +115,11 @@ const Sidebar = () => {
                 </form>
                 {/* <button type='button' className='bg-blue-400 mx-4 rounded-lg py-2 shadow-lg'>Filter Jobs</button> */}
             </div>
-            <div className='mx-4 text-xs text-center dark:text-gray-300'>Created by Waleed <span className="px-5">| </span>  Total jobs: {count} </div>
+            <div className="hidden md:block">
+
+                <div className='text-sm font-bold text-center text-gray-300 dark:text-gray-700'>  Total jobs: {count} </div>
+            </div>
+
         </div>
     )
 }

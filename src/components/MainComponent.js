@@ -14,7 +14,7 @@ const MainComponent = () => {
     }, [])
 
     return (
-        <div className='flex flex-col h-[calc(100vh-110px)] ml-1 mr-4 w-full mt-4 px-4 py-4 rounded-2xl border-gray-800 dark:border-gray-500 border-2 overflow-y-auto'>
+        <div className='flex flex-col h-[calc(100vh-110px)] ml-4 md:ml-1 mr-4 mb-4 md:w-full mt-4 px-4 py-4 rounded-2xl border-gray-800 dark:border-gray-500 border-2 overflow-y-auto'>
 
             {loading && <><ShimmerComponent /> <ShimmerComponent /></>}
             {error && <div><h2 className='mb-2 py-1 px-2 rounded-md text-red-400 w-full border-red-400 border-2'>{error}</h2></div>}

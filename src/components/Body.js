@@ -28,11 +28,13 @@ const Body = () => {
     }, [userToken])
 
     return (
-        <div className='flex'>
+        <div className='flex flex-col md:flex-row '>
 
             {!userToken ? <Login /> :
                 <>
+                    {/* <div> */}
                     <Sidebar />
+                    {/* </div> */}
                     <MainComponent />
                 </>
             }

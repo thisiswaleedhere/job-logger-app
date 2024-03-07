@@ -28,14 +28,14 @@ const Login = () => {
     }
 
     return (
-        <div className='flex flex-col h-[calc(100vh-110px)] mx-4 w-full mt-4 px-4 py-4 rounded-2xl border-gray-800 dark:border-gray-500 border-2 dark:text-gray-400'>
-            <div className='w-96 h-96 my-auto mx-auto'>
-                <h1 className='font-bold text-4xl '>{isSignIn ? 'Sign In' : 'Sign Up'}</h1>
+        <div className='flex flex-col h-[calc(100vh-110px)] mx-4 md:w-full mt-4 mb-4 px-4 py-4 rounded-2xl border-gray-800 dark:border-gray-500 border-2 dark:text-gray-400'>
+            <div className='sm:w-96 h-96 my-auto mx-auto'>
+                <h1 className='font-bold text-3xl sm:text-4xl '>{isSignIn ? 'Sign In' : 'Sign Up'}</h1>
 
                 <div className='flex-col flex gap-4 my-6 text-gray-600 dark:text-gray-400'>
                     {!isSignIn && <input type='input' required className='h-12 rounded-lg px-3 bg-gray-200 dark:bg-gray-700' placeholder='Name' ref={name} />}
                     <input type='email' required className='h-12 rounded-lg px-3 bg-gray-200 dark:bg-gray-700' placeholder='Email' ref={email} />
-                    <input type='input' required className='h-12 rounded-lg px-3 bg-gray-200 dark:bg-gray-700' placeholder='Password' ref={password} />
+                    <input type='password' required className='h-12 rounded-lg px-3 bg-gray-200 dark:bg-gray-700' placeholder='Password' ref={password} />
                     {loading ?
                         <div className='w-full h-12 rounded-lg px-2 bg-blue-200 text-center py-3 shadow-xl text-gray-800 dark:text-black'>Authenticating User...</div>
                         : <button onClick={handleLogin} type='button' className='w-full h-12 rounded-lg px-2 bg-blue-300 shadow-xl text-gray-800 dark:text-black'>{isSignIn ? 'Sign In' : 'Sign Up'}</button>

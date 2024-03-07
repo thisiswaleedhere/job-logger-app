@@ -2,6 +2,10 @@
 @tailwind utilities;
 @tailwind components;
 
+  {
+  @apply transition-colors duration-300;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 0px;

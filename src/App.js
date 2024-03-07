@@ -10,8 +10,8 @@ function App() {
 
   return (
     <Provider store={appStore}>
-      <div className={`App ${dark && "dark"} h-screen pt-4 dark:bg-gray-900`}>
-        <Navbar />
+      <div className={`App ${dark && "dark"} md:h-screen min-w-[370px] pt-4 dark:bg-gray-900`}>
+        <Navbar dark={dark} setDark={setDark} />
         <Body />
       </div>
     </Provider>
