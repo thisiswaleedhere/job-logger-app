@@ -17,11 +17,14 @@ const Login = () => {
 
 
     const handleLogin = async () => {
+
         if (isSignIn) {
+            if (!email.current.value || !password.current.value) return alert("Please enter all fields");
             const raw = JSON.stringify({ "email": email.current?.value, "password": password.current?.value });
             dispatch(loginAsync(raw))
         }
         if (!isSignIn) {
+            if (!email.current.value || !password.current.value || !name.current.value) return alert("Please enter all fields");
             const newUser = JSON.stringify({ "name": name.current?.value, "email": email.current?.value, "password": password.current?.value });
             dispatch(createUserAsync(newUser))
         }
@@ -34,7 +37,7 @@ const Login = () => {
 
                 <div className='flex-col flex gap-4 my-6 text-gray-600 dark:text-gray-400'>
                     {!isSignIn && <input type='input' required className='h-12 rounded-lg px-3 bg-gray-200 dark:bg-gray-700' placeholder='Name' ref={name} />}
-                    <input type='email' required className='h-12 rounded-lg px-3 bg-gray-200 dark:bg-gray-700' placeholder='Email' ref={email} />
+                    <input type='email' required={true} className='h-12 rounded-lg px-3 bg-gray-200 dark:bg-gray-700' placeholder='Email' ref={email} />
                     <input type='password' required className='h-12 rounded-lg px-3 bg-gray-200 dark:bg-gray-700' placeholder='Password' ref={password} />
                     {loading ?
                         <div className='w-full h-12 rounded-lg px-2 bg-blue-200 text-center py-3 shadow-xl text-gray-800 dark:text-black'>Authenticating User...</div>
