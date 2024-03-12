@@ -13,7 +13,7 @@ const EntryComponent = ({ job }) => {
         <div className='py-1 bg-gray-200 dark:bg-gray-700 dark:text-gray-300 mb-3 px-3 rounded-lg flex justify-between'>
             <div className='flex justify-between w-11/12 '>
                 <div className='flex- flex-col lg:w-1/2'>
-                    <div className='font-bold text-lg '>{job.position}</div>
+                    <div className='font-bold text-lg hover:cursor-pointer hover:underline ' onClick={() => window.open(job.joblink.length > 10 && job.joblink, '_blank')}>{job.position}</div>
                     <div className='dark:text-gray-400'>{job.company}</div>
                 </div>
                 {/* <div className='row-span-2 text-sm self-center'>{job.joblink}</div> */}
